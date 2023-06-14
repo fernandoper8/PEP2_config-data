@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: acopio-service
+          uri: lb://acopio-service
+          predicates:
+            - Path=/acopio/**
+        - id: datos-service
+          uri: lb://datos-service
+          predicates:
+            - Path=/datos/**
+        - id: planilla-service
+          uri: lb://planilla-service
+          predicates:
+            - Path=/planilla/**
+        - id: proveedor-service
+          uri: lb://proveedor-service
+          predicates:
+            - Path=/proveedor/**
