@@ -8,4 +8,3 @@ eureka:
       defaultZone: http://eureka-service.default.svc.cluster.local:8761/eureka/
   instance:
     preferIpAddress: true
-    ipAddress: ${status.podIP}
